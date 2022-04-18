@@ -27,11 +27,9 @@ func hurt(damage: int, dir: Vector3):
 		emit_signal("gibbed")
 	if cur_health <= 0:
 		emit_signal("dead")
-		print("dead")
 	else:
 		emit_signal("hurt")
 	emit_signal("health_changed", cur_health)
-	print("hurt ", damage, "current health ", cur_health)
 	
 func heal(amount: int):
 	if cur_health <= 0:
