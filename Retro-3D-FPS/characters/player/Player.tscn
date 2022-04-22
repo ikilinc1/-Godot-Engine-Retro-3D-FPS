@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=24 format=2]
 
 [ext_resource path="res://characters/player/Player.gd" type="Script" id=1]
 [ext_resource path="res://characters/CharacterMover.gd" type="Script" id=2]
@@ -8,6 +8,8 @@
 [ext_resource path="res://weapons/shotgun.glb" type="PackedScene" id=6]
 [ext_resource path="res://weapons/machinegun.glb" type="PackedScene" id=7]
 [ext_resource path="res://weapons/machete.glb" type="PackedScene" id=8]
+[ext_resource path="res://weapons/HitScanBulletEmitter.tscn" type="PackedScene" id=9]
+[ext_resource path="res://weapons/Weapon.gd" type="Script" id=10]
 
 [sub_resource type="CapsuleShape" id=1]
 radius = 0.5
@@ -136,7 +138,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.2 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ Vector3( 0, 0, 0.1 ), Vector3( 0, 0, 0 ) ]
+"values": [ Vector3( 0, 0, 0.07 ), Vector3( 0, 0, 0 ) ]
 }
 
 [sub_resource type="Animation" id=7]
@@ -354,6 +356,7 @@ script = ExtResource( 4 )
 
 [node name="Machete" type="Spatial" parent="Camera/WeaponManager/Weapons"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0952334, -0.059131, 0.355746 )
+visible = false
 
 [node name="Graphics" type="Spatial" parent="Camera/WeaponManager/Weapons/Machete"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
@@ -369,7 +372,8 @@ anims/idle = SubResource( 4 )
 
 [node name="MachineGun" type="Spatial" parent="Camera/WeaponManager/Weapons"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.105916, -0.0788125, 0.316466 )
-visible = false
+script = ExtResource( 10 )
+automatic = true
 
 [node name="Graphics" type="Spatial" parent="Camera/WeaponManager/Weapons/MachineGun"]
 
@@ -381,6 +385,11 @@ autoplay = "idle"
 anims/RESET = SubResource( 5 )
 anims/attack = SubResource( 6 )
 anims/idle = SubResource( 7 )
+
+[node name="BulletEmitters" type="Spatial" parent="Camera/WeaponManager/Weapons/MachineGun"]
+
+[node name="HitScanBulletEmitter" parent="Camera/WeaponManager/Weapons/MachineGun/BulletEmitters" instance=ExtResource( 9 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0312446, -0.1923 )
 
 [node name="Shotgun" type="Spatial" parent="Camera/WeaponManager/Weapons"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0621646, -0.013283, 0.405079 )
@@ -411,6 +420,9 @@ autoplay = "idle"
 anims/RESET = SubResource( 11 )
 anims/attack = SubResource( 12 )
 anims/idle = SubResource( 13 )
+
+[node name="FirePoint" type="Spatial" parent="Camera"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.135601 )
 
 [node name="CharacterMover" type="Spatial" parent="."]
 script = ExtResource( 2 )

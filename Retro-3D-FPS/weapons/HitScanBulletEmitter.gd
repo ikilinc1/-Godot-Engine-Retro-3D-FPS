@@ -23,6 +23,11 @@ func fire():
 		get_tree().get_root().add_child(hit_effect_inst)
 		hit_effect_inst.global_transform.origin = result.position
 		
+		var children : Array = hit_effect_inst.get_children()
+		for child in children:
+			if child is Particles:
+				child.emitting = true
+		
 		if result.normal.angle_to(Vector3.UP) < 0.00005:
 			return
 		if result.normal.angle_to(Vector3.DOWN) < 0.00005:
@@ -34,3 +39,4 @@ func fire():
 		var z = x.cross(y)
 		
 		hit_effect_inst.global_transform.basis = Basis(x, y, z)
+		

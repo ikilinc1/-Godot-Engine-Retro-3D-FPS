@@ -18,7 +18,7 @@ export var mouse_sens = 0.5
 onready var camera = $Camera
 onready var character_mover = $CharacterMover
 onready var health_manager = $HealthManager
-onready var weapon_Manager = $Camera/WeaponManager
+onready var weapon_manager = $Camera/WeaponManager
 
 var dead = false
 
@@ -27,6 +27,7 @@ func _ready():
 	character_mover.init(self)
 	health_manager.init()
 	health_manager.connect("dead", self, "kill")
+	weapon_manager.init($Camera/FirePoint, [self])
 
 func _process(_delta):
 	if Input.is_action_just_pressed("exit"):
@@ -48,6 +49,7 @@ func _process(_delta):
 	if Input.is_action_just_pressed("jump"):
 		character_mover.jump()
 		
+	weapon_manager.attack(Input.is_action_just_pressed("attack"), Input.is_action_pressed("attack"))
 	
 
 func _input(event):
@@ -57,12 +59,12 @@ func _input(event):
 		camera.rotation_degrees.x = clamp(camera.rotation_degrees.x, -90, 90)
 	if event is InputEventKey and event.pressed:
 		if event.scancode in hotkeys:
-			weapon_Manager.switch_to_weapon_slot(hotkeys[event.scancode])
+			weapon_manager.switch_to_weapon_slot(hotkeys[event.scancode])
 	if event is InputEventMouseButton and event.pressed:
 		if event.button_index == BUTTON_WHEEL_DOWN:
-			weapon_Manager.switch_to_next_weapon()
+			weapon_manager.switch_to_next_weapon()
 		if event.button_index == BUTTON_WHEEL_UP:
-			weapon_Manager.switch_to_last_weapon()
+			weapon_manager.switch_to_last_weapon()
 
 func hurt(damage, dir):
 	health_manager.hurt(damage, dir)
