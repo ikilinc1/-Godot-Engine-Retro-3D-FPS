@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=2]
+[gd_scene load_steps=28 format=2]
 
 [ext_resource path="res://characters/player/Player.gd" type="Script" id=1]
 [ext_resource path="res://characters/CharacterMover.gd" type="Script" id=2]
@@ -13,6 +13,7 @@
 [ext_resource path="res://effects/MuzzleFlash.gd" type="Script" id=11]
 [ext_resource path="res://effects/raw_assets/muzzleflash1.glb" type="PackedScene" id=12]
 [ext_resource path="res://effects/raw_assets/muzzleflash3.glb" type="PackedScene" id=13]
+[ext_resource path="res://weapons/DamageArea.tscn" type="PackedScene" id=14]
 
 [sub_resource type="CapsuleShape" id=1]
 radius = 0.5
@@ -359,7 +360,10 @@ script = ExtResource( 4 )
 
 [node name="Machete" type="Spatial" parent="Camera/WeaponManager/Weapons"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0952334, -0.059131, 0.355746 )
-visible = false
+script = ExtResource( 10 )
+damage = 15
+ammo = -1
+attack_rate = 0.4
 
 [node name="Graphics" type="Spatial" parent="Camera/WeaponManager/Weapons/Machete"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
@@ -372,6 +376,11 @@ autoplay = "idle"
 anims/RESET = SubResource( 2 )
 anims/attack = SubResource( 3 )
 anims/idle = SubResource( 4 )
+
+[node name="BulletEmitters" type="Spatial" parent="Camera/WeaponManager/Weapons/Machete"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.12539, 0.157635, -0.54278 )
+
+[node name="DamageArea" parent="Camera/WeaponManager/Weapons/Machete/BulletEmitters" instance=ExtResource( 14 )]
 
 [node name="MachineGun" type="Spatial" parent="Camera/WeaponManager/Weapons"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.105916, -0.0788125, 0.316466 )
@@ -409,6 +418,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0312446, -0.1923 )
 
 [node name="Shotgun" type="Spatial" parent="Camera/WeaponManager/Weapons"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0621646, -0.013283, 0.405079 )
+visible = false
 script = ExtResource( 10 )
 attack_rate = 0.8
 
@@ -469,6 +479,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.135601 )
 
 [node name="CharacterMover" type="Spatial" parent="."]
 script = ExtResource( 2 )
+jump_force = 20
 
 [node name="HealthManager" type="Spatial" parent="."]
 script = ExtResource( 3 )

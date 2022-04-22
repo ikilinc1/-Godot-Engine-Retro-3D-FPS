@@ -7,7 +7,7 @@ onready var bullet_emitters = $BulletEmitters.get_children()
 export var automatic = false
 
 var fire_point : Spatial
-var bodies_to_exlude: Array = []
+var bodies_to_exclude: Array = []
 
 export var damage = 5
 export var ammo = 30
@@ -28,10 +28,10 @@ func _ready():
 	
 func init(_fire_point: Spatial, _bodies_to_exclude: Array):
 	fire_point = _fire_point
-	bodies_to_exlude = _bodies_to_exclude
+	bodies_to_exclude = _bodies_to_exclude
 	for bullet_emitter in bullet_emitters:
 		bullet_emitter.set_damage(damage)
-		bullet_emitter.set_bodies_to_exclude(bodies_to_exlude)
+		bullet_emitter.set_bodies_to_exclude(bodies_to_exclude)
 		
 func attack(attack_input_just_pressed: bool, attack_input_held: bool):
 	if !can_attack:
