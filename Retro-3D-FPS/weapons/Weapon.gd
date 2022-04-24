@@ -65,10 +65,12 @@ func finish_attack():
 	
 func set_active():
 	show()
+	$Crosshair.show()
 	
 func set_inactive():
 	anim_player.play("idle")
 	hide()
+	$Crosshair.hide()
 	
 	
 	

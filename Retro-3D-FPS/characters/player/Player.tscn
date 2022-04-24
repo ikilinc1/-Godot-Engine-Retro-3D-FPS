@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=2]
+[gd_scene load_steps=34 format=2]
 
 [ext_resource path="res://characters/player/Player.gd" type="Script" id=1]
 [ext_resource path="res://characters/CharacterMover.gd" type="Script" id=2]
@@ -16,6 +16,10 @@
 [ext_resource path="res://weapons/DamageArea.tscn" type="PackedScene" id=14]
 [ext_resource path="res://effects/raw_assets/muzzleflash2.glb" type="PackedScene" id=15]
 [ext_resource path="res://weapons/RocketSpawner.tscn" type="PackedScene" id=16]
+[ext_resource path="res://weapons/crosshairs/crosshair065.png" type="Texture" id=17]
+[ext_resource path="res://weapons/crosshairs/crosshair026.png" type="Texture" id=18]
+[ext_resource path="res://weapons/crosshairs/crosshair001.png" type="Texture" id=19]
+[ext_resource path="res://weapons/crosshairs/crosshair066.png" type="Texture" id=20]
 
 [sub_resource type="CapsuleShape" id=1]
 radius = 0.5
@@ -384,6 +388,17 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.12539, 0.157635, -0.54278 )
 
 [node name="DamageArea" parent="Camera/WeaponManager/Weapons/Machete/BulletEmitters" instance=ExtResource( 14 )]
 
+[node name="Crosshair" type="TextureRect" parent="Camera/WeaponManager/Weapons/Machete"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -36.0
+margin_top = -36.0
+margin_right = 36.0
+margin_bottom = 36.0
+texture = ExtResource( 19 )
+
 [node name="MachineGun" type="Spatial" parent="Camera/WeaponManager/Weapons"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.105916, -0.0788125, 0.316466 )
 visible = false
@@ -417,6 +432,17 @@ anims/idle = SubResource( 7 )
 
 [node name="HitScanBulletEmitter" parent="Camera/WeaponManager/Weapons/MachineGun/BulletEmitters" instance=ExtResource( 9 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0312446, -0.1923 )
+
+[node name="Crosshair" type="TextureRect" parent="Camera/WeaponManager/Weapons/MachineGun"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -36.0
+margin_top = -36.0
+margin_right = 36.0
+margin_bottom = 36.0
+texture = ExtResource( 17 )
 
 [node name="Shotgun" type="Spatial" parent="Camera/WeaponManager/Weapons"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0621646, -0.013283, 0.405079 )
@@ -461,6 +487,17 @@ transform = Transform( 0.996195, 0.00456138, -0.0870363, 0, 0.99863, 0.052336, 0
 [node name="HitScanBulletEmitter5" parent="Camera/WeaponManager/Weapons/Shotgun/BulletEmitters" instance=ExtResource( 9 )]
 transform = Transform( 0.996195, -0.00607968, 0.0869434, 0, 0.997564, 0.0697565, -0.0871557, -0.069491, 0.993768, 0, 0, 0 )
 
+[node name="Crosshair" type="TextureRect" parent="Camera/WeaponManager/Weapons/Shotgun"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -36.0
+margin_top = -36.0
+margin_right = 36.0
+margin_bottom = 36.0
+texture = ExtResource( 20 )
+
 [node name="RocketLauncher" type="Spatial" parent="Camera/WeaponManager/Weapons"]
 transform = Transform( 0.998351, 0, 0.0574072, 0, 1, 0, -0.0574072, 0, 0.998351, 0.101555, -0.00539851, 0.35428 )
 script = ExtResource( 10 )
@@ -488,6 +525,17 @@ anims/idle = SubResource( 13 )
 [node name="BulletEmitters" type="Spatial" parent="Camera/WeaponManager/Weapons/RocketLauncher"]
 
 [node name="RocketSpawner" parent="Camera/WeaponManager/Weapons/RocketLauncher/BulletEmitters" instance=ExtResource( 16 )]
+
+[node name="Crosshair" type="TextureRect" parent="Camera/WeaponManager/Weapons/RocketLauncher"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -36.0
+margin_top = -36.0
+margin_right = 36.0
+margin_bottom = 36.0
+texture = ExtResource( 18 )
 
 [node name="FirePoint" type="Spatial" parent="Camera"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.135601 )
