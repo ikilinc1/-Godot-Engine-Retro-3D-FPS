@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=2]
+[gd_scene load_steps=30 format=2]
 
 [ext_resource path="res://characters/player/Player.gd" type="Script" id=1]
 [ext_resource path="res://characters/CharacterMover.gd" type="Script" id=2]
@@ -8,12 +8,14 @@
 [ext_resource path="res://weapons/raw_assets/shotgun.glb" type="PackedScene" id=6]
 [ext_resource path="res://weapons/raw_assets/machinegun.glb" type="PackedScene" id=7]
 [ext_resource path="res://weapons/raw_assets/machete.glb" type="PackedScene" id=8]
-[ext_resource path="res://weapons/raw_assets/HitScanBulletEmitter.tscn" type="PackedScene" id=9]
-[ext_resource path="res://weapons/raw_assets/Weapon.gd" type="Script" id=10]
+[ext_resource path="res://weapons/HitScanBulletEmitter.tscn" type="PackedScene" id=9]
+[ext_resource path="res://weapons/Weapon.gd" type="Script" id=10]
 [ext_resource path="res://effects/MuzzleFlash.gd" type="Script" id=11]
 [ext_resource path="res://effects/raw_assets/muzzleflash1.glb" type="PackedScene" id=12]
 [ext_resource path="res://effects/raw_assets/muzzleflash3.glb" type="PackedScene" id=13]
 [ext_resource path="res://weapons/DamageArea.tscn" type="PackedScene" id=14]
+[ext_resource path="res://effects/raw_assets/muzzleflash2.glb" type="PackedScene" id=15]
+[ext_resource path="res://weapons/RocketSpawner.tscn" type="PackedScene" id=16]
 
 [sub_resource type="CapsuleShape" id=1]
 radius = 0.5
@@ -360,6 +362,7 @@ script = ExtResource( 4 )
 
 [node name="Machete" type="Spatial" parent="Camera/WeaponManager/Weapons"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0952334, -0.059131, 0.355746 )
+visible = false
 script = ExtResource( 10 )
 damage = 15
 ammo = -1
@@ -460,18 +463,31 @@ transform = Transform( 0.996195, -0.00607968, 0.0869434, 0, 0.997564, 0.0697565,
 
 [node name="RocketLauncher" type="Spatial" parent="Camera/WeaponManager/Weapons"]
 transform = Transform( 0.998351, 0, 0.0574072, 0, 1, 0, -0.0574072, 0, 0.998351, 0.101555, -0.00539851, 0.35428 )
-visible = false
+script = ExtResource( 10 )
 
 [node name="Graphics" type="Spatial" parent="Camera/WeaponManager/Weapons/RocketLauncher"]
 
 [node name="rocketlauncher" parent="Camera/WeaponManager/Weapons/RocketLauncher/Graphics" instance=ExtResource( 5 )]
 transform = Transform( 0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0 )
 
+[node name="MuzzleFlash" type="Spatial" parent="Camera/WeaponManager/Weapons/RocketLauncher/Graphics"]
+transform = Transform( 1, 0, 5.58794e-08, 0, 1, 0, -5.58794e-08, 0, 1, -0.00376288, 0.0543863, -0.176463 )
+script = ExtResource( 11 )
+
+[node name="OmniLight" type="OmniLight" parent="Camera/WeaponManager/Weapons/RocketLauncher/Graphics/MuzzleFlash"]
+
+[node name="muzzleflash2" parent="Camera/WeaponManager/Weapons/RocketLauncher/Graphics/MuzzleFlash" instance=ExtResource( 15 )]
+transform = Transform( -0.1, 0, -1.58325e-08, 0, 0.1, 0, 1.58325e-08, 0, -0.1, 0, 0, 0 )
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Camera/WeaponManager/Weapons/RocketLauncher"]
 autoplay = "idle"
 anims/RESET = SubResource( 11 )
 anims/attack = SubResource( 12 )
 anims/idle = SubResource( 13 )
+
+[node name="BulletEmitters" type="Spatial" parent="Camera/WeaponManager/Weapons/RocketLauncher"]
+
+[node name="RocketSpawner" parent="Camera/WeaponManager/Weapons/RocketLauncher/BulletEmitters" instance=ExtResource( 16 )]
 
 [node name="FirePoint" type="Spatial" parent="Camera"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.135601 )
@@ -488,4 +504,5 @@ autostart = true
 
 [connection signal="fired" from="Camera/WeaponManager/Weapons/MachineGun" to="Camera/WeaponManager/Weapons/MachineGun/Graphics/MuzzleFlash" method="flash"]
 [connection signal="fired" from="Camera/WeaponManager/Weapons/Shotgun" to="Camera/WeaponManager/Weapons/Shotgun/Graphics/MuzzleFlash" method="flash"]
+[connection signal="fired" from="Camera/WeaponManager/Weapons/RocketLauncher" to="Camera/WeaponManager/Weapons/RocketLauncher/Graphics/MuzzleFlash" method="flash"]
 [connection signal="timeout" from="Timer" to="." method="hurt" binds= [ 5, Vector3( 0, 0, 0 ) ]]
