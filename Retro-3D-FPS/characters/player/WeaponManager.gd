@@ -8,6 +8,7 @@ var slots_unlocked = {
 	WEAPON_SLOTS.ROCKET_LAUNCHER: true,
 }
 
+onready var anim_player = $AnimationPlayer
 onready var weapons = $Weapons.get_children()
 var cur_slot = 0
 var cur_weapon = null
@@ -61,3 +62,11 @@ func disable_all_weapons():
 			weapon.set_inactive()
 		else:
 			weapon.hide()
+
+func update_animation(velocity: Vector3, grounded: bool):
+	if cur_weapon.has_method("is_idle") and !cur_weapon.is_idle():
+		anim_player.play("idle")
+	if !grounded or velocity.length() < 15:
+		anim_player.play("idle", 0.05)
+	anim_player.play("moving")
+	
