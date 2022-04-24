@@ -4,12 +4,12 @@
 [ext_resource path="res://characters/CharacterMover.gd" type="Script" id=2]
 [ext_resource path="res://characters/HealthManager.gd" type="Script" id=3]
 [ext_resource path="res://characters/player/WeaponManager.gd" type="Script" id=4]
-[ext_resource path="res://weapons/rocketlauncher.glb" type="PackedScene" id=5]
-[ext_resource path="res://weapons/shotgun.glb" type="PackedScene" id=6]
-[ext_resource path="res://weapons/machinegun.glb" type="PackedScene" id=7]
-[ext_resource path="res://weapons/machete.glb" type="PackedScene" id=8]
-[ext_resource path="res://weapons/HitScanBulletEmitter.tscn" type="PackedScene" id=9]
-[ext_resource path="res://weapons/Weapon.gd" type="Script" id=10]
+[ext_resource path="res://weapons/raw_assets/rocketlauncher.glb" type="PackedScene" id=5]
+[ext_resource path="res://weapons/raw_assets/shotgun.glb" type="PackedScene" id=6]
+[ext_resource path="res://weapons/raw_assets/machinegun.glb" type="PackedScene" id=7]
+[ext_resource path="res://weapons/raw_assets/machete.glb" type="PackedScene" id=8]
+[ext_resource path="res://weapons/raw_assets/HitScanBulletEmitter.tscn" type="PackedScene" id=9]
+[ext_resource path="res://weapons/raw_assets/Weapon.gd" type="Script" id=10]
 [ext_resource path="res://effects/MuzzleFlash.gd" type="Script" id=11]
 [ext_resource path="res://effects/raw_assets/muzzleflash1.glb" type="PackedScene" id=12]
 [ext_resource path="res://effects/raw_assets/muzzleflash3.glb" type="PackedScene" id=13]
@@ -366,7 +366,6 @@ ammo = -1
 attack_rate = 0.4
 
 [node name="Graphics" type="Spatial" parent="Camera/WeaponManager/Weapons/Machete"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
 
 [node name="machete" parent="Camera/WeaponManager/Weapons/Machete/Graphics" instance=ExtResource( 8 )]
 transform = Transform( 0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0 )

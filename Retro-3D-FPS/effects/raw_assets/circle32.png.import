@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/greenmetal.png-2d1a8ad49362e0b87d96818f151098ea.stex"
+path="res://.import/circle32.png-5f4142ec68f94824d0e89006487b2e95.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://weapons/greenmetal.png"
-dest_files=[ "res://.import/greenmetal.png-2d1a8ad49362e0b87d96818f151098ea.stex" ]
+source_file="res://effects/raw_assets/circle32.png"
+dest_files=[ "res://.import/circle32.png-5f4142ec68f94824d0e89006487b2e95.stex" ]
 
 [params]
 

@@ -2,12 +2,12 @@
 
 importer="scene"
 type="PackedScene"
-path="res://.import/shotgun.glb-cbe4f582d806cde4f6b69519e116ad22.scn"
+path="res://.import/shotgun.glb-3bc261505287cd4ee38aa60b2c634307.scn"
 
 [deps]
 
-source_file="res://weapons/shotgun.glb"
-dest_files=[ "res://.import/shotgun.glb-cbe4f582d806cde4f6b69519e116ad22.scn" ]
+source_file="res://weapons/raw_assets/shotgun.glb"
+dest_files=[ "res://.import/shotgun.glb-3bc261505287cd4ee38aa60b2c634307.scn" ]
 
 [params]
 

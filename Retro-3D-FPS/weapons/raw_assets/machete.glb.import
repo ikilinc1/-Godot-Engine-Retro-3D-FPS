@@ -2,12 +2,12 @@
 
 importer="scene"
 type="PackedScene"
-path="res://.import/machete.glb-a43856d9c29f8abfc54f247eedabb278.scn"
+path="res://.import/machete.glb-a12b22ebd6fc40ac6c15346dfa8e775d.scn"
 
 [deps]
 
-source_file="res://weapons/machete.glb"
-dest_files=[ "res://.import/machete.glb-a43856d9c29f8abfc54f247eedabb278.scn" ]
+source_file="res://weapons/raw_assets/machete.glb"
+dest_files=[ "res://.import/machete.glb-a12b22ebd6fc40ac6c15346dfa8e775d.scn" ]
 
 [params]
 
