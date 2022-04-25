@@ -8,6 +8,16 @@
 
 config_version=4
 
+_global_script_classes=[ {
+"base": "Area",
+"class": "HitBox",
+"language": "GDScript",
+"path": "res://characters/HitBox.gd"
+} ]
+_global_script_class_icons={
+"HitBox": ""
+}
+
 [application]
 
 config/name="Retro-3D-FPS"
