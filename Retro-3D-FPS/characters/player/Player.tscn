@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=2]
+[gd_scene load_steps=39 format=2]
 
 [ext_resource path="res://characters/player/Player.gd" type="Script" id=1]
 [ext_resource path="res://characters/CharacterMover.gd" type="Script" id=2]
@@ -392,7 +392,13 @@ tracks/0/keys = {
 "values": [ Vector3( 0, 0, 0 ), Vector3( -0.015, 0, 0 ) ]
 }
 
-[node name="Player" type="KinematicBody"]
+[sub_resource type="SphereShape" id=17]
+radius = 13.0
+
+[sub_resource type="SphereShape" id=18]
+radius = 50.0
+
+[node name="Player" type="KinematicBody" groups=["player"]]
 collision_layer = 6
 collision_mask = 3
 script = ExtResource( 1 )
@@ -589,6 +595,20 @@ autoplay = "idle"
 anims/RESET = SubResource( 14 )
 anims/idle = SubResource( 15 )
 anims/moving = SubResource( 16 )
+
+[node name="AlertAreaHearing" type="Area" parent="Camera/WeaponManager"]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape" type="CollisionShape" parent="Camera/WeaponManager/AlertAreaHearing"]
+shape = SubResource( 17 )
+
+[node name="AlertAreaLos" type="Area" parent="Camera/WeaponManager"]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape" type="CollisionShape" parent="Camera/WeaponManager/AlertAreaLos"]
+shape = SubResource( 18 )
 
 [node name="FirePoint" type="Spatial" parent="Camera"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.135601 )
