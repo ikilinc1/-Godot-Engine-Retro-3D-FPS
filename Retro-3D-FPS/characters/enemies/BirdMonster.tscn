@@ -1,9 +1,10 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://characters/HitBox.tscn" type="PackedScene" id=1]
 [ext_resource path="res://characters/enemies/raw_assets/birdmonster.glb" type="PackedScene" id=2]
 [ext_resource path="res://characters/enemies/Monster.gd" type="Script" id=3]
 [ext_resource path="res://characters/HealthManager.tscn" type="PackedScene" id=4]
+[ext_resource path="res://characters/CharacterMover.tscn" type="PackedScene" id=5]
 
 [sub_resource type="CapsuleShape" id=1]
 radius = 0.5
@@ -178,5 +179,10 @@ shape = SubResource( 8 )
 
 [node name="HealthManager" parent="." instance=ExtResource( 4 )]
 max_health = 20
+
+[node name="CharacterMover" parent="." instance=ExtResource( 5 )]
+move_accel = 2
+max_speed = 10
+ignore_rotation = true
 
 [editable path="Graphics"]
