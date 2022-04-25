@@ -1,8 +1,9 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://characters/HitBox.tscn" type="PackedScene" id=1]
 [ext_resource path="res://characters/enemies/raw_assets/birdmonster.glb" type="PackedScene" id=2]
 [ext_resource path="res://characters/enemies/Monster.gd" type="Script" id=3]
+[ext_resource path="res://characters/HealthManager.tscn" type="PackedScene" id=4]
 
 [sub_resource type="CapsuleShape" id=1]
 radius = 0.5
@@ -186,5 +187,8 @@ weak_spot = true
 [node name="CollisionShape" type="CollisionShape" parent="Graphics/Armature/Skeleton/Body/HitBox2"]
 transform = Transform( 0.999619, -0.00624397, -0.0268459, -0.0275625, -0.226446, -0.973634, 2.16998e-07, 0.974004, -0.226532, -0.00015042, 0.484459, 0.258466 )
 shape = SubResource( 8 )
+
+[node name="HealthManager" parent="." instance=ExtResource( 4 )]
+max_health = 20
 
 [editable path="Graphics"]

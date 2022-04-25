@@ -2,7 +2,7 @@
 
 [ext_resource path="res://characters/player/Player.gd" type="Script" id=1]
 [ext_resource path="res://characters/CharacterMover.gd" type="Script" id=2]
-[ext_resource path="res://characters/HealthManager.gd" type="Script" id=3]
+[ext_resource path="res://characters/HealthManager.tscn" type="PackedScene" id=3]
 [ext_resource path="res://characters/player/WeaponManager.gd" type="Script" id=4]
 [ext_resource path="res://weapons/raw_assets/rocketlauncher.glb" type="PackedScene" id=5]
 [ext_resource path="res://weapons/raw_assets/shotgun.glb" type="PackedScene" id=6]
@@ -597,8 +597,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.135601 )
 script = ExtResource( 2 )
 jump_force = 20
 
-[node name="HealthManager" type="Spatial" parent="."]
-script = ExtResource( 3 )
+[node name="HealthManager" parent="." instance=ExtResource( 3 )]
 
 [node name="Timer" type="Timer" parent="."]
 autostart = true
