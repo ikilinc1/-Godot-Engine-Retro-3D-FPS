@@ -15,6 +15,7 @@ var path = []
 export var sight_angle = 45.0
 export var turn_speed = 360.0
 
+export var attack_angle = 5.0
 export var attack_range = 2.0
 export var attack_rate = 1.0
 export var attack_anim_speed_mod = 0.5
@@ -94,6 +95,8 @@ func process_state_attack(delta):
 	if can_attack:
 		if !within_dist_of_player(attack_range) or !can_see_player():
 			set_state_chase()
+		elif !player_within_angle(attack_angle):
+			face_dir(global_transform.origin.direction_to(player.global_transform.origin), delta)
 		else:
 			start_attack()
 	
@@ -118,9 +121,12 @@ func emit_attack_signal():
 	emit_signal("attack")
 	
 func can_see_player():
+	return player_within_angle(sight_angle) and has_los_player()
+
+func player_within_angle(angle: float):
 	var dir_to_player = global_transform.origin.direction_to(player.global_transform.origin)
 	var forwards = global_transform.basis.z
-	return rad2deg(forwards.angle_to(dir_to_player)) < sight_angle and has_los_player()
+	return rad2deg(forwards.angle_to(dir_to_player)) < angle
 
 func has_los_player():
 	var our_pos = global_transform.origin + Vector3.UP

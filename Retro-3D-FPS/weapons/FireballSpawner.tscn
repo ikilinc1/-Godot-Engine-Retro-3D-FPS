@@ -2,5 +2,5 @@
 
 [ext_resource path="res://weapons/FireballSpawner.gd" type="Script" id=1]
 
-[node name="RocketSpawner" type="Spatial"]
+[node name="FireballSpawner" type="Spatial"]
 script = ExtResource( 1 )
