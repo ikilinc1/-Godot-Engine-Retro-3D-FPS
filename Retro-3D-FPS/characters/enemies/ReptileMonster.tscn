@@ -45,18 +45,6 @@ attack_range = 100.0
 
 [node name="Graphics" parent="." instance=ExtResource( 2 )]
 
-[node name="Skeleton" parent="Graphics/Armature" index="0"]
-bones/0/bound_children = [ NodePath("Hip") ]
-bones/1/bound_children = [ NodePath("Body") ]
-bones/2/bound_children = [ NodePath("ArmUL") ]
-bones/3/bound_children = [ NodePath("ArmLL") ]
-bones/4/bound_children = [ NodePath("ArmUR") ]
-bones/5/bound_children = [ NodePath("ArmLR") ]
-bones/6/bound_children = [ NodePath("LegUL") ]
-bones/7/bound_children = [ NodePath("LegLL") ]
-bones/8/bound_children = [ NodePath("LegUR") ]
-bones/9/bound_children = [ NodePath("LegLR") ]
-
 [node name="ArmUL" type="BoneAttachment" parent="Graphics/Armature/Skeleton" index="1"]
 transform = Transform( -0.794582, 0.196512, -0.574476, -0.391239, -0.889262, 0.236948, -0.464297, 0.413032, 0.783475, 0.218738, 1.56265, 0.11293 )
 bone_name = "upper_arml"
@@ -170,6 +158,7 @@ transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 1, 0
 shape = SubResource( 1 )
 
 [node name="HealthManager" parent="." instance=ExtResource( 4 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0 )
 max_health = 20
 
 [node name="CharacterMover" parent="." instance=ExtResource( 5 )]
