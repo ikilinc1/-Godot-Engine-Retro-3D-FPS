@@ -1,0 +1,54 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://effects/raw_assets/circle32.png" type="Texture" id=1]
+[ext_resource path="res://effects/Gib.tscn" type="PackedScene" id=2]
+[ext_resource path="res://effects/Gibs.gd" type="Script" id=3]
+
+[sub_resource type="SpatialMaterial" id=1]
+flags_transparent = true
+flags_unshaded = true
+vertex_color_use_as_albedo = true
+params_billboard_mode = 3
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+albedo_texture = ExtResource( 1 )
+
+[sub_resource type="Curve" id=2]
+_data = [ Vector2( 0, 0 ), 0.0, 2.61364, 0, 0, Vector2( 1, 0 ), -6.44381, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=3]
+curve = SubResource( 2 )
+
+[sub_resource type="ParticlesMaterial" id=4]
+direction = Vector3( 0, 1, 0 )
+initial_velocity = 5.0
+scale = 0.2
+scale_curve = SubResource( 3 )
+color = Color( 0.164706, 0.0196078, 0.0196078, 1 )
+
+[sub_resource type="QuadMesh" id=5]
+
+[node name="Gibs" type="Spatial"]
+script = ExtResource( 3 )
+
+[node name="Gib" parent="." instance=ExtResource( 2 )]
+
+[node name="Gib2" parent="." instance=ExtResource( 2 )]
+transform = Transform( 0.8, 0, 0, 0, 0.748641, -0.282022, 0, 0.282022, 0.748641, 0.0402043, 0.261953, 0.521024 )
+
+[node name="Gib3" parent="." instance=ExtResource( 2 )]
+transform = Transform( 0.84568, -0.307936, 0, 0.307936, 0.84568, 0, 0, 0, 0.9, -0.464615, 0.232201, 0 )
+
+[node name="Gib4" parent="." instance=ExtResource( 2 )]
+transform = Transform( 0.656229, 0.243645, 0, -0.243645, 0.656229, 0, 0, 0, 0.7, 0.531694, 0.265882, 0 )
+
+[node name="Particles" type="Particles" parent="."]
+material_override = SubResource( 1 )
+emitting = false
+amount = 16
+one_shot = true
+explosiveness = 0.8
+local_coords = false
+process_material = SubResource( 4 )
+draw_pass_1 = SubResource( 5 )

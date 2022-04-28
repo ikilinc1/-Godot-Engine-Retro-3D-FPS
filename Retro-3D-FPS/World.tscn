@@ -1,10 +1,9 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://environment/raw_assets/grass_lowres.png" type="Texture" id=1]
 [ext_resource path="res://environment/assets/brickwall.tscn" type="PackedScene" id=2]
 [ext_resource path="res://environment/assets/shed.tscn" type="PackedScene" id=3]
 [ext_resource path="res://characters/player/Player.tscn" type="PackedScene" id=4]
-[ext_resource path="res://weapons/HitScanBulletEmitter.tscn" type="PackedScene" id=5]
 [ext_resource path="res://characters/enemies/BirdMonster.tscn" type="PackedScene" id=6]
 [ext_resource path="res://characters/enemies/ReptileMonster.tscn" type="PackedScene" id=7]
 
@@ -102,7 +101,4 @@ transform = Transform( -0.99312, 0, -0.117104, -0.10745, 0.397596, 0.911247, 0.0
 shadow_enabled = true
 
 [node name="Player" parent="." instance=ExtResource( 4 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 7 )
-
-[node name="HitScanBulletEmitter" parent="." instance=ExtResource( 5 )]
-transform = Transform( 1, 0, 0, 0, 0, 1, 0, -1, 0, 0, 3, 10 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 10.6612 )

@@ -39,6 +39,7 @@ func _ready():
 				child.connect("hurt", self, "hurt")
 				
 	health_manager.connect("dead", self, "set_state_dead")
+	health_manager.connect("gibbed", $Graphics, "hide")
 	character_mover.init(self)
 	set_state_idle()
 
