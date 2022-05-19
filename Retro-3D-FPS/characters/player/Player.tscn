@@ -1,4 +1,4 @@
-[gd_scene load_steps=48 format=2]
+[gd_scene load_steps=51 format=2]
 
 [ext_resource path="res://characters/player/Player.gd" type="Script" id=1]
 [ext_resource path="res://characters/CharacterMover.tscn" type="PackedScene" id=2]
@@ -24,6 +24,8 @@
 [ext_resource path="res://ui/crypt_domino_1b.png" type="Texture" id=22]
 [ext_resource path="res://ui/KleintenDynFont.tres" type="DynamicFont" id=23]
 [ext_resource path="res://characters/player/StatsDisplay.gd" type="Script" id=24]
+[ext_resource path="res://characters/player/PickupInfo.gd" type="Script" id=25]
+[ext_resource path="res://ui/KLEINTEN.ttf" type="DynamicFontData" id=26]
 
 [sub_resource type="CapsuleShape" id=1]
 radius = 0.5
@@ -503,6 +505,10 @@ tracks/0/keys = {
 "values": [ false ]
 }
 
+[sub_resource type="DynamicFont" id=24]
+size = 24
+font_data = ExtResource( 26 )
+
 [node name="Player" type="KinematicBody" groups=["player"]]
 collision_layer = 6
 collision_mask = 3
@@ -785,6 +791,17 @@ anims/heal = SubResource( 21 )
 anims/hurt = SubResource( 22 )
 anims/start = SubResource( 23 )
 
+[node name="PickupInfo" type="Label" parent="CanvasLayer"]
+margin_left = 33.0
+margin_top = 135.0
+margin_right = 295.0
+margin_bottom = 287.0
+custom_fonts/font = SubResource( 24 )
+script = ExtResource( 25 )
+
+[node name="RemoveInfoTimer" type="Timer" parent="CanvasLayer/PickupInfo"]
+wait_time = 2.0
+
 [connection signal="ammo_changed" from="Camera/WeaponManager" to="CanvasLayer/StatsDisplay" method="update_ammo"]
 [connection signal="fired" from="Camera/WeaponManager/Weapons/MachineGun" to="Camera/WeaponManager/Weapons/MachineGun/Graphics/MuzzleFlash" method="flash"]
 [connection signal="fired" from="Camera/WeaponManager/Weapons/Shotgun" to="Camera/WeaponManager/Weapons/Shotgun/Graphics/MuzzleFlash" method="flash"]
@@ -793,3 +810,5 @@ anims/start = SubResource( 23 )
 [connection signal="healed" from="HealthManager" to="CanvasLayer/HealthEffects/AnimationPlayer" method="play" binds= [ "heal" ]]
 [connection signal="health_changed" from="HealthManager" to="CanvasLayer/StatsDisplay" method="update_health"]
 [connection signal="hurt" from="HealthManager" to="CanvasLayer/HealthEffects/AnimationPlayer" method="play" binds= [ "hurt" ]]
+[connection signal="got_pickup" from="PickupManager" to="CanvasLayer/PickupInfo" method="add_pickups_info"]
+[connection signal="timeout" from="CanvasLayer/PickupInfo/RemoveInfoTimer" to="CanvasLayer/PickupInfo" method="remove_pickups_info"]
