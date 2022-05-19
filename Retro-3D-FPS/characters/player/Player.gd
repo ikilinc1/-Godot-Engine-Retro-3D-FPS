@@ -19,12 +19,18 @@ onready var camera = $Camera
 onready var character_mover = $CharacterMover
 onready var health_manager = $HealthManager
 onready var weapon_manager = $Camera/WeaponManager
+onready var pickup_manager = $PickupManager
 
 var dead = false
 
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	character_mover.init(self)
+	
+	pickup_manager.max_player_health = health_manager.max_health
+	health_manager.connect("health_changed",pickup_manager, "update_player_health")
+	pickup_manager.connect("got_pickup", weapon_manager,"get_pickup")
+	pickup_manager.connect("got_pickup", health_manager,"get_pickup")
 	health_manager.init()
 	health_manager.connect("dead", self, "kill")
 	weapon_manager.init($Camera/FirePoint, [self])

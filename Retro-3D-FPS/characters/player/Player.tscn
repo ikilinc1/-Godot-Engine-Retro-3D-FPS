@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=2]
+[gd_scene load_steps=41 format=2]
 
 [ext_resource path="res://characters/player/Player.gd" type="Script" id=1]
 [ext_resource path="res://characters/CharacterMover.tscn" type="PackedScene" id=2]
@@ -20,6 +20,7 @@
 [ext_resource path="res://weapons/crosshairs/crosshair026.png" type="Texture" id=18]
 [ext_resource path="res://weapons/crosshairs/crosshair001.png" type="Texture" id=19]
 [ext_resource path="res://weapons/crosshairs/crosshair066.png" type="Texture" id=20]
+[ext_resource path="res://characters/player/PickupManager.gd" type="Script" id=21]
 
 [sub_resource type="CapsuleShape" id=1]
 radius = 0.5
@@ -398,6 +399,9 @@ radius = 13.0
 [sub_resource type="SphereShape" id=18]
 radius = 50.0
 
+[sub_resource type="CapsuleShape" id=19]
+radius = 0.7
+
 [node name="Player" type="KinematicBody" groups=["player"]]
 collision_layer = 6
 collision_mask = 3
@@ -619,6 +623,15 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.135601 )
 
 [node name="Timer" type="Timer" parent="."]
 autostart = true
+
+[node name="PickupManager" type="Area" parent="."]
+collision_layer = 0
+collision_mask = 8
+script = ExtResource( 21 )
+
+[node name="CollisionShape" type="CollisionShape" parent="PickupManager"]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 1, 0 )
+shape = SubResource( 19 )
 
 [connection signal="fired" from="Camera/WeaponManager/Weapons/MachineGun" to="Camera/WeaponManager/Weapons/MachineGun/Graphics/MuzzleFlash" method="flash"]
 [connection signal="fired" from="Camera/WeaponManager/Weapons/Shotgun" to="Camera/WeaponManager/Weapons/Shotgun/Graphics/MuzzleFlash" method="flash"]
