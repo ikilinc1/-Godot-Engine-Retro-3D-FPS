@@ -8,5 +8,5 @@
 
 
 Godot version-->3.4.4  
-Current proggress --> Finished. 
+Current progress --> Finished. 
 
